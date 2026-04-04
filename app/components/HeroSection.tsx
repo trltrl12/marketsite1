@@ -1,112 +1,118 @@
-'use client';
-
-import { useState } from 'react';
-import LeadForm from './LeadForm';
-import CalendlyEmbed from './CalendlyEmbed';
-
-interface SubmittedData {
-  name: string;
-  email: string;
-}
-
 export default function HeroSection() {
-  const [submitted, setSubmitted] = useState(false);
-  const [leadData, setLeadData] = useState<SubmittedData>({ name: '', email: '' });
-
-  const handleFormSubmit = (data: { name: string; companyName: string; phone: string; email: string }) => {
-    setLeadData({ name: data.name, email: data.email });
-    setSubmitted(true);
-    // Scroll to scheduling step
-    setTimeout(() => {
-      document.getElementById('schedule')?.scrollIntoView({ behavior: 'smooth', block: 'start' });
-    }, 100);
-  };
-
-  if (submitted) {
-    return (
-      <section id="schedule" className="min-h-screen bg-slate-900 pt-16 pb-20">
-        <div className="max-w-3xl mx-auto px-6">
-          <CalendlyEmbed prefillName={leadData.name} prefillEmail={leadData.email} />
-        </div>
-      </section>
-    );
-  }
-
   return (
-    <section id="hero" className="bg-slate-900 text-white min-h-screen flex items-center py-16">
-      <div className="max-w-7xl mx-auto px-6 w-full">
-        <div className="grid lg:grid-cols-2 gap-12 items-center">
-          {/* Left: Copy */}
-          <div className="order-2 lg:order-1">
-            <div className="inline-flex items-center gap-2 bg-blue-600/20 border border-blue-500/30 text-blue-300 text-sm font-semibold px-4 py-2 rounded-full mb-6">
-              <span className="w-2 h-2 bg-blue-400 rounded-full animate-pulse"></span>
-              Meta Ads + Google PPC — For Real Estate Investors Only
-            </div>
+    <section
+      id="hero"
+      className="relative min-h-screen flex items-center overflow-hidden bg-[#080808] grid-bg"
+    >
+      {/* Animated gradient mesh */}
+      <div className="absolute inset-0 overflow-hidden pointer-events-none">
+        <div
+          className="blob-1 absolute rounded-full opacity-[0.12]"
+          style={{
+            width: '900px',
+            height: '900px',
+            background: 'radial-gradient(circle, #d97706 0%, transparent 65%)',
+            top: '-250px',
+            right: '-200px',
+          }}
+        />
+        <div
+          className="blob-2 absolute rounded-full opacity-[0.07]"
+          style={{
+            width: '700px',
+            height: '700px',
+            background: 'radial-gradient(circle, #7c3aed 0%, transparent 65%)',
+            bottom: '-100px',
+            left: '-150px',
+          }}
+        />
+        <div
+          className="blob-3 absolute rounded-full opacity-[0.05]"
+          style={{
+            width: '500px',
+            height: '500px',
+            background: 'radial-gradient(circle, #f59e0b 0%, transparent 65%)',
+            top: '40%',
+            left: '35%',
+          }}
+        />
+      </div>
 
-            <h1 className="text-4xl md:text-5xl xl:text-6xl font-extrabold leading-tight mb-6">
-              We Help{' '}
-              <span className="text-amber-400">We Buy Houses</span>{' '}
-              Companies Generate More Motivated Seller Leads
-            </h1>
-
-            <p className="text-xl text-slate-300 leading-relaxed mb-8">
-              We build and manage paid lead generation systems for real estate investors who want more qualified seller leads, more inbound appointments, and more opportunities to close deals — using Meta Ads and Google PPC exclusively.
-            </p>
-
-            <div className="space-y-3 mb-8">
-              {[
-                'Inbound motivated seller leads delivered to your pipeline',
-                'Campaigns built specifically for cash home buying businesses',
-                'No long-term contracts. Performance-focused from day one.',
-                'We only work with real estate investors — this is all we do',
-              ].map((item, i) => (
-                <div key={i} className="flex items-start gap-3">
-                  <div className="flex-shrink-0 w-5 h-5 bg-amber-500 rounded-full flex items-center justify-center mt-0.5">
-                    <svg className="w-3 h-3 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={3} d="M5 13l4 4L19 7" />
-                    </svg>
-                  </div>
-                  <span className="text-slate-200">{item}</span>
-                </div>
-              ))}
-            </div>
-
-            <div className="flex items-center gap-4 text-sm text-slate-400">
-              <div className="flex -space-x-2">
-                {[1,2,3,4].map((i) => (
-                  <div key={i} className="w-8 h-8 rounded-full bg-gradient-to-br from-blue-500 to-blue-700 border-2 border-slate-900 flex items-center justify-center text-xs font-bold text-white">
-                    {['TC','MR','DW','AL'][i-1]}
-                  </div>
-                ))}
-              </div>
-              <span>Trusted by real estate investors across the US</span>
-            </div>
+      {/* Content */}
+      <div className="relative z-10 max-w-7xl mx-auto px-6 pt-24 pb-20 w-full">
+        <div className="max-w-4xl">
+          {/* Badge */}
+          <div className="inline-flex items-center gap-2.5 border border-[#f59e0b]/30 bg-[#f59e0b]/5 text-[#f59e0b] text-xs font-semibold uppercase tracking-widest px-4 py-2 rounded mb-8">
+            <span className="w-1.5 h-1.5 rounded-full bg-[#f59e0b] animate-pulse" />
+            Meta Ads + Google PPC — For Real Estate Investors Only
           </div>
 
-          {/* Right: Form */}
-          <div className="order-1 lg:order-2">
-            <div className="bg-white rounded-2xl shadow-2xl p-8">
-              <div className="mb-6">
-                <h2 className="text-2xl font-bold text-gray-900 mb-2">
-                  Book Your Free Lead Generation Strategy Call
-                </h2>
-                <p className="text-gray-600 text-sm">
-                  Tell us about your business and we'll show you exactly how we can generate more motivated seller leads for your market using paid ads.
-                </p>
-              </div>
+          {/* Headline */}
+          <h1 className="font-bebas text-[clamp(4rem,10vw,9rem)] leading-none tracking-wide text-white mb-6">
+            We Fill Your{' '}
+            <span className="text-[#f59e0b]">Pipeline</span>
+            <br />
+            With Motivated{' '}
+            <span
+              style={{
+                WebkitTextStroke: '2px #f59e0b',
+                color: 'transparent',
+              }}
+            >
+              Sellers.
+            </span>
+          </h1>
 
-              <div className="flex items-center gap-3 bg-amber-50 border border-amber-200 rounded-lg px-4 py-3 mb-6">
-                <span className="text-amber-500 text-lg">⚡</span>
-                <p className="text-sm text-amber-800 font-medium">
-                  Step 1 of 2 — Fill in your info, then pick a call time
-                </p>
-              </div>
+          {/* Subheadline */}
+          <p className="text-[#a3a3a3] text-lg md:text-xl leading-relaxed max-w-2xl mb-10 font-light">
+            We build and manage high-performance{' '}
+            <span className="text-white font-medium">Meta Ads</span> and{' '}
+            <span className="text-white font-medium">Google PPC</span> campaigns
+            exclusively for real estate investors, wholesalers, and house flippers
+            — generating inbound motivated seller leads on demand.
+          </p>
 
-              <LeadForm onSubmit={handleFormSubmit} />
-            </div>
+          {/* CTAs */}
+          <div className="flex flex-col sm:flex-row items-start sm:items-center gap-4 mb-14">
+            <a
+              href="#get-started"
+              className="btn-pulse glow-gold inline-flex items-center gap-3 bg-[#f59e0b] hover:bg-[#fbbf24] text-[#080808] font-bold text-base px-8 py-4 rounded transition-all duration-200 hover:scale-105 hover:shadow-[0_0_30px_rgba(245,158,11,0.5)]"
+            >
+              Book Your Free Strategy Call
+              <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M17 8l4 4m0 0l-4 4m4-4H3" />
+              </svg>
+            </a>
+            <a
+              href="#services"
+              className="inline-flex items-center gap-2 text-[#737373] hover:text-white text-sm font-medium transition-colors group"
+            >
+              <span>See how it works</span>
+              <svg className="w-4 h-4 group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
+              </svg>
+            </a>
+          </div>
+
+          {/* Trust row */}
+          <div className="flex flex-wrap items-center gap-6 border-t border-[#1e1e1e] pt-8">
+            {[
+              { icon: '✓', text: 'No long-term contracts' },
+              { icon: '✓', text: 'Real estate investors only' },
+              { icon: '✓', text: 'Leads in 7–14 days' },
+              { icon: '✓', text: 'You own your ad accounts' },
+            ].map((item, i) => (
+              <div key={i} className="flex items-center gap-2">
+                <span className="text-[#f59e0b] font-bold text-sm">{item.icon}</span>
+                <span className="text-[#737373] text-sm">{item.text}</span>
+              </div>
+            ))}
           </div>
         </div>
       </div>
+
+      {/* Bottom fade */}
+      <div className="absolute bottom-0 left-0 right-0 h-32 bg-gradient-to-t from-[#080808] to-transparent pointer-events-none" />
     </section>
   );
 }
